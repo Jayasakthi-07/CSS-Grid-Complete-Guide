@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid Tracks - CSS Grid Basics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .track-demo { display:grid; grid-template-columns: 120px 1fr 2fr; grid-template-rows: 80px minmax(100px, auto) 60px; gap:10px; }
+    .track-demo > div { background:#fff; border-radius:8px; padding:.75rem; box-shadow:0 4px 12px rgba(0,0,0,.08); font-weight:700; display:flex; align-items:center; justify-content:center; }
+    .controls { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; margin: .75rem 0; }
+    .controls input { width: 220px; }
+    .note { font-size:.95rem; color:#4a5568; }
+    .split { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+    pre { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="example-container">
+    <header class="header">📐 Grid Tracks Define column and row track sizes precisely</header>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Home</a>
+      <a class="nav-link" href="03-grid-lines.html">← Back: Grid Lines</a>
+    </nav>
+
+    <section class="explanation">
+      What are tracks?
+      Tracks are the columns and rows between grid lines. You define explicit tracks with grid-template-columns and grid-template-rows, while the browser may create implicit tracks as needed.
+    </section>
+
+    <section class="explanation split">
+      <div>
+        Live track sizing
+        <div class="controls">
+          <label>Columns <input id="cols" type="text" value="120px 1fr 2fr" /></label>
+          <label>Rows <input id="rows" type="text" value="80px minmax(100px, auto) 60px" /></label>
+          <button class="toggle-btn" onclick="applyTracks()">Apply</button>
+        </div>
+        <div class="track-demo" id="trackDemo">
+          <div>1</div><div>2</div><div>3</div>
+          <div>4</div><div>5</div><div>6</div>
+          <div>7</div><div>8</div><div>9</div>
+        </div>
+      </div>
+      <div>
+        Helpful patterns
+        <div class="code-display">
+repeat(3, 1fr)
+repeat(auto-fill, minmax(220px, 1fr))
+200px minmax(300px, 1fr) 200px
+fit-content(300px) 1fr 1fr
+        </div>
+        <p class="note">Use fr for flexible space, minmax() for bounds, repeat() for concise patterns, and fit-content() to cap track growth.</p>
+      </div>
+    </section>
+
+    <section class="explanation">
+      Code
+      <pre class="code-display" id="codeOut"></pre>
+    </section>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Back to Home</a>
+      <a class="nav-link" href="03-grid-lines.html">← Back: Grid Lines</a>
+    </nav>
+  </div>
+
+  <script>
+    function applyTracks() {
+      const cols = document.getElementById('cols').value.trim() || '1fr 1fr';
+      const rows = document.getElementById('rows').value.trim() || 'auto';
+      const demo = document.getElementById('trackDemo');
+      demo.style.gridTemplateColumns = cols;
+      demo.style.gridTemplateRows = rows;
+      document.getElementById('codeOut').textContent = `.grid {\n  grid-template-columns: ${cols};\n  grid-template-rows: ${rows};\n}`;
+    }
+    document.addEventListener('DOMContentLoaded', applyTracks);
+  </script>
+</body>
+</html>
