@@ -1,0 +1,390 @@
+/* ==========================================================================
+   CSS Grid Complete Guide - Base Styles
+   ========================================================================== */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f8fafc;
+}
+
+/* ==========================================================================
+   Example Page Layout
+   ========================================================================== */
+
+.example-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    min-height: 100vh;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #718096;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.navigation {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.nav-link {
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    background: #4299e1;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.nav-link:hover {
+    background: #3182ce;
+}
+
+/* ==========================================================================
+   Demo Grid Containers - Base Styles for Examples
+   ========================================================================== */
+
+.demo-grid {
+    border: 2px solid #4299e1;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem 0;
+    background: #f7fafc;
+    min-height: 200px;
+}
+
+.demo-grid.large {
+    min-height: 300px;
+}
+
+.demo-grid.tall {
+    min-height: 400px;
+}
+
+/* ==========================================================================
+   Demo Grid Items - Base Styles
+   ========================================================================== */
+
+.grid-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Color Variations for Grid Items */
+.grid-item:nth-child(1) { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.grid-item:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.grid-item:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.grid-item:nth-child(4) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.grid-item:nth-child(5) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.grid-item:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+.grid-item:nth-child(7) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+.grid-item:nth-child(8) { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+.grid-item:nth-child(9) { background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); }
+.grid-item:nth-child(10) { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+
+/* ==========================================================================
+   Content Sections
+   ========================================================================== */
+
+.explanation {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+}
+
+.explanation h2 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.explanation h3 {
+    color: #4a5568;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.explanation p {
+    margin-bottom: 1rem;
+    color: #718096;
+}
+
+.explanation ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.explanation li {
+    margin-bottom: 0.5rem;
+    color: #718096;
+}
+
+/* ==========================================================================
+   Code Display
+   ========================================================================== */
+
+.code-display {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 6px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-left: 4px solid #4299e1;
+}
+
+.code-display .property {
+    color: #63b3ed;
+}
+
+.code-display .value {
+    color: #68d391;
+}
+
+.code-display .comment {
+    color: #a0aec0;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Interactive Controls (for dynamic examples)
+   ========================================================================== */
+
+.controls {
+    background: #edf2f7;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin: 2rem 0;
+}
+
+.controls h3 {
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.control-group {
+    margin-bottom: 1rem;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.control-group select,
+.control-group input {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 200px;
+}
+
+.control-group button {
+    padding: 0.5rem 1rem;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.control-group button:hover {
+    background: #3182ce;
+}
+
+/* ==========================================================================
+   Property Showcase (for property-specific examples)
+   ========================================================================== */
+
+.property-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.property-example {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid #4299e1;
+}
+
+.property-example h4 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.property-example .mini-grid {
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.5rem;
+    min-height: 120px;
+    margin-bottom: 1rem;
+}
+
+.property-example .mini-item {
+    background: #4299e1;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .example-container {
+        padding: 1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .property-showcase {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        display: block;
+        margin: 0.5rem 0;
+    }
+    
+    .demo-grid {
+        padding: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.m-0 { margin: 0; }
+.m-1 { margin: 1rem; }
+.m-2 { margin: 2rem; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+
+.border-dashed { border-style: dashed !important; }
+.border-dotted { border-style: dotted !important; }
+
+.bg-light { background: #f7fafc; }
+.bg-primary { background: #4299e1; }
+.bg-secondary { background: #718096; }
+
+.text-primary { color: #4299e1; }
+.text-secondary { color: #718096; }
+.text-dark { color: #2d3748; }
+
+/* ==========================================================================
+   Animation Classes (for dynamic examples)
+   ========================================================================== */
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight {
+    animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+    0% { background-color: transparent; }
+    50% { background-color: #fef5e7; }
+    100% { background-color: transparent; }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .navigation,
+    .controls {
+        display: none;
+    }
+    
+    .example-container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .demo-grid {
+        border: 2px solid #000;
+    }
+}
