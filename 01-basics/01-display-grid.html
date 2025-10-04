@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Grid - CSS Grid Basics</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Example-specific styles */
+        .before-grid {
+            border: 2px solid #e53e3e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            background: #fed7d7;
+        }
+        
+        .after-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            border: 2px solid #38a169;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            background: #c6f6d5;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-item h3 {
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .demo-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+        
+        .toggle-demo {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .toggle-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #3182ce;
+        }
+        
+        .toggle-btn.active {
+            background: #2b6cb0;
+        }
+        
+        #interactive-demo {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="example-container">
+        <header class="header">
+            <h1>🎯 Display Grid</h1>
+            <p>Learn how to convert any element into a grid container using <code>display: grid</code></p>
+        </header>
+        
+        <nav class="navigation">
+            <a href="../index.html" class="nav-link">🏠 Home</a>
+            <a href="02-grid-terminology.html" class="nav-link">Next: Grid Terminology →</a>
+        </nav>
+        
+        <section class="explanation">
+            <h2>What is Display Grid?</h2>
+            <p>The <code>display: grid</code> property is the foundation of CSS Grid Layout. It converts any element into a <strong>grid container</strong>, establishing a new grid formatting context for its contents.</p>
+            
+            <h3>Key Points:</h3>
+            <ul>
+                <li>Transforms the element into a grid container</li>
+                <li>All direct children become grid items</li>
+                <li>Enables two-dimensional layout control</li>
+                <li>Works alongside other grid properties for complete layout control</li>
+            </ul>
+        </section>
+        
+        <section class="explanation">
+            <h2>Before and After Comparison</h2>
+            <p>See the dramatic difference <code>display: grid</code> makes to element layout:</p>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h3>❌ Without Grid (Normal Flow)</h3>
+                    <div class="before-grid">
+                        <div class="demo-item">Item 1</div>
+                        <div class="demo-item">Item 2</div>
+                        <div class="demo-item">Item 3</div>
+                        <div class="demo-item">Item 4</div>
+                        <div class="demo-item">Item 5</div>
+                        <div class="demo-item">Item 6</div>
+                    </div>
+                    <div class="code-display">
+.container {
+  /* <span class="comment">No grid - items stack vertically</span> */
+  <span class="property">border</span>: <span class="value">2px solid red</span>;
+  <span class="property">padding</span>: <span class="value">1rem</span>;
+}
+                    </div>
+                </div>
+                
+                <div class="comparison-item">
+                    <h3>✅ With Grid Layout</h3>
+                    <div class="after-grid">
+                        <div class="demo-item">Item 1</div>
+                        <div class="demo-item">Item 2</div>
+                        <div class="demo-item">Item 3</div>
+                        <div class="demo-item">Item 4</div>
+                        <div class="demo-item">Item 5</div>
+                        <div class="demo-item">Item 6</div>
+                    </div>
+                    <div class="code-display">
+.container {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>;
+  <span class="property">gap</span>: <span class="value">1rem</span>;
+  <span class="property">border</span>: <span class="value">2px solid green</span>;
+  <span class="property">padding</span>: <span class="value">1rem</span>;
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="explanation">
+            <h2>Interactive Demo</h2>
+            <p>Toggle between normal flow and grid layout to see the difference:</p>
+            
+            <div class="toggle-demo">
+                <button class="toggle-btn active" onclick="toggleLayout('normal')">Normal Flow</button>
+                <button class="toggle-btn" onclick="toggleLayout('grid')">Grid Layout</button>
+            </div>
+            
+            <div id="interactive-demo" class="demo-grid">
+                <div class="grid-item">Header</div>
+                <div class="grid-item">Sidebar</div>
+                <div class="grid-item">Main Content</div>
+                <div class="grid-item">Aside</div>
+                <div class="grid-item">Footer</div>
+                <div class="grid-item">Extra</div>
+            </div>
+        </section>
+        
+        <section class="explanation">
+            <h2>Common Use Cases</h2>
+            <div class="property-showcase">
+                <div class="property-example">
+                    <h4>🏗️ Layout Containers</h4>
+                    <p>Perfect for creating structured layouts like headers, sidebars, and content areas.</p>
+                    <div class="code-display">
+.layout {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-areas</span>: 
+    <span class="value">"header header"</span>
+    <span class="value">"sidebar main"</span>
+    <span class="value">"footer footer"</span>;
+}
+                    </div>
+                </div>
+                
+                <div class="property-example">
+                    <h4>📋 Card Grids</h4>
+                    <p>Ideal for creating responsive card layouts with consistent spacing.</p>
+                    <div class="code-display">
+.cards {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: 
+    <span class="value">repeat(auto-fit, minmax(300px, 1fr))</span>;
+  <span class="property">gap</span>: <span class="value">2rem</span>;
+}
+                    </div>
+                </div>
+                
+                <div class="property-example">
+                    <h4>📊 Data Tables</h4>
+                    <p>Great for aligning data in rows and columns with precise control.</p>
+                    <div class="code-display">
+.data-table {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">200px 1fr 100px</span>;
+  <span class="property">grid-auto-rows</span>: <span class="value">50px</span>;
+}
+                    </div>
+                </div>
+                
+                <div class="property-example">
+                    <h4>🎨 Image Galleries</h4>
+                    <p>Perfect for creating masonry-style or uniform image grids.</p>
+                    <div class="code-display">
+.gallery {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">repeat(4, 1fr)</span>;
+  <span class="property">grid-gap</span>: <span class="value">10px</span>;
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="explanation">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li><code>display: grid</code> is the first step to using CSS Grid</li>
+                <li>It creates a grid container and makes direct children into grid items</li>
+                <li>Grid provides two-dimensional layout control (rows and columns)</li>
+                <li>Grid items are positioned automatically unless explicitly placed</li>
+                <li>Works great for both simple and complex layouts</li>
+            </ul>
+            
+            <div class="code-display">
+<span class="comment">/* Basic grid setup */</span>
+.container {
+  <span class="property">display</span>: <span class="value">grid</span>; <span class="comment">/* The magic starts here! */</span>
+  <span class="property">grid-template-columns</span>: <span class="value">200px 1fr 200px</span>;
+  <span class="property">grid-template-rows</span>: <span class="value">auto 1fr auto</span>;
+  <span class="property">gap</span>: <span class="value">1rem</span>;
+  <span class="property">min-height</span>: <span class="value">100vh</span>;
+}
+            </div>
+        </section>
+        
+        <nav class="navigation">
+            <a href="../index.html" class="nav-link">🏠 Back to Home</a>
+            <a href="02-grid-terminology.html" class="nav-link">Next: Grid Terminology →</a>
+        </nav>
+    </div>
+    
+    <script>
+        function toggleLayout(type) {
+            const demo = document.getElementById('interactive-demo');
+            const buttons = document.querySelectorAll('.toggle-btn');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (type === 'normal') {
+                demo.style.display = 'block';
+                demo.style.gridTemplateColumns = 'none';
+                demo.style.gap = '0';
+                buttons[0].classList.add('active');
+            } else {
+                demo.style.display = 'grid';
+                demo.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                demo.style.gap = '1rem';
+                buttons[1].classList.add('active');
+            }
+        }
+        
+        // Initialize with normal layout
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleLayout('normal');
+        });
+    </script>
+</body>
+</html>
