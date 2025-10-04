@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid Lines - CSS Grid Basics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .demo { display:grid; grid-template-columns: repeat(4, 100px); grid-template-rows: repeat(3, 70px); gap: 8px; margin: 1rem 0; position:relative; }
+    .demo .item { background:#fff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+    .lines { position:absolute; inset:0; pointer-events:none; }
+    .lines .col, .lines .row { position:absolute; color:#2d3748; font-size:12px; font-weight:800; }
+    .lines .col { top:-18px; }
+    .lines .row { left:-22px; }
+
+    .controls { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; margin:.5rem 0; }
+    .controls input { width: 90px; }
+
+    .placement { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+    .grid-box { background:#f7fafc; padding:1rem; border:1px solid #e2e8f0; border-radius:10px; }
+    .grid-area { display:grid; grid-template-columns: repeat(6, 50px); grid-template-rows: repeat(4, 48px); gap:6px; position:relative; justify-content:center; }
+    .grid-area .cell { background:#e9d8fd; border-radius:6px; }
+    .highlight { background:#9f7aea !important; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .code { margin-top:.5rem; }
+  </style>
+</head>
+<body>
+  <div class="example-container">
+    <header class="header">
+      📏 Grid Lines
+      Understand numbered and named lines to place items precisely
+    </header>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Home</a>
+      <a class="nav-link" href="02-grid-terminology.html">← Back: Grid Terminology</a>
+      <a class="nav-link" href="04-grid-tracks.html">Next: Grid Tracks →</a>
+    </nav>
+
+    <section class="explanation">
+      What are grid lines?
+      Grid lines are the invisible lines that bound rows and columns. They are numbered, and you can also name them to improve readability when placing items.
+      <div class="code-display">.item { grid-column: 2 / 5; grid-row: 1 / 3; }</div>
+    </section>
+
+    <section class="explanation">
+      Interactive: numbered lines placement
+      <div class="controls">
+        <label>Column start <input id="cs" type="number" value="2" min="1" max="6" /></label>
+        <label>Column end <input id="ce" type="number" value="5" min="2" max="7" /></label>
+        <label>Row start <input id="rs" type="number" value="1" min="1" max="5" /></label>
+        <label>Row end <input id="re" type="number" value="3" min="2" max="6" /></label>
+        <button class="toggle-btn" onclick="applyPlacement()">Apply</button>
+      </div>
+      <div class="grid-area" id="gridArea"></div>
+      <div class="code-display" id="codeOut">.item { grid-column: 2 / 5; grid-row: 1 / 3; }</div>
+    </section>
+
+    <section class="explanation">
+      Named lines
+      Naming lines provides semantic meaning and reduces off-by-one errors.
+      <div class="code-display">grid-template-columns: [sidebar-start] 200px [sidebar-end content-start] 1fr [content-end];</div>
+    </section>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Back to Home</a>
+      <a class="nav-link" href="02-grid-terminology.html">← Back: Grid Terminology</a>
+      <a class="nav-link" href="04-grid-tracks.html">Next: Grid Tracks →</a>
+    </nav>
+  </div>
+
+  <script>
+    function buildGrid() {
+      const area = document.getElementById('gridArea');
+      area.innerHTML = '';
+      for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 6; c++) {
+          const d = document.createElement('div');
+          d.className = 'cell';
+          area.appendChild(d);
+        }
+      }
+      const item = document.createElement('div');
+      item.className = 'highlight';
+      item.textContent = 'item';
+      area.appendChild(item);
+      applyPlacement();
+    }
+    function applyPlacement() {
+      const cs = parseInt(document.getElementById('cs').value, 10);
+      const ce = parseInt(document.getElementById('ce').value, 10);
+      const rs = parseInt(document.getElementById('rs').value, 10);
+      const re = parseInt(document.getElementById('re').value, 10);
+      const item = document.querySelector('.highlight');
+      item.style.gridColumn = `${cs} / ${ce}`;
+      item.style.gridRow = `${rs} / ${re}`;
+      document.getElementById('codeOut').textContent = `.item {\n  grid-column: ${cs} / ${ce};\n  grid-row: ${rs} / ${re};\n}`;
+    }
+    document.addEventListener('DOMContentLoaded', buildGrid);
+  </script>
+</body>
+</html>
