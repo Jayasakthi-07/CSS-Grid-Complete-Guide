@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Complete Guide - Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        .section-card h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .example-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .example-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .example-list a {
+            display: block;
+            padding: 0.75rem 1rem;
+            background: #f8f9ff;
+            border: 1px solid #e1e5f2;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #4c51bf;
+            transition: all 0.3s ease;
+        }
+        
+        .example-list a:hover {
+            background: #4c51bf;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: #f7fafc;
+            color: #718096;
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🎨 CSS Grid Complete Guide</h1>
+        <p>Master CSS Grid with comprehensive examples, from basic concepts to advanced responsive layouts. Interactive demonstrations for every CSS Grid property.</p>
+    </div>
+    
+    <main class="navigation-grid">
+        <!-- 01. Basics -->
+        <section class="section-card">
+            <h2><span class="icon">🌱</span> 01. Basics</h2>
+            <p>Start your CSS Grid journey with fundamental concepts and terminology.</p>
+            <ul class="example-list">
+                <li><a href="01-basics/01-display-grid.html">Display Grid</a></li>
+                <li><a href="01-basics/02-grid-terminology.html">Grid Terminology</a></li>
+                <li><a href="01-basics/03-grid-lines.html">Grid Lines</a></li>
+                <li><a href="01-basics/04-grid-tracks.html">Grid Tracks</a></li>
+            </ul>
+        </section>
+        
+        <!-- 02. Container Properties -->
+        <section class="section-card">
+            <h2><span class="icon">📦</span> 02. Container Properties</h2>
+            <p>Properties applied to the grid container (parent element).</p>
+            <ul class="example-list">
+                <li><a href="02-container-properties/01-grid-template-columns.html">Grid Template Columns</a></li>
+                <li><a href="02-container-properties/02-grid-template-rows.html">Grid Template Rows</a></li>
+                <li><a href="02-container-properties/03-grid-template-areas.html">Grid Template Areas</a></li>
+                <li><a href="02-container-properties/04-grid-template.html">Grid Template (Shorthand)</a></li>
+                <li><a href="02-container-properties/05-gap.html">Gap Properties</a></li>
+                <li><a href="02-container-properties/06-justify-items.html">Justify Items</a></li>
+                <li><a href="02-container-properties/07-align-items.html">Align Items</a></li>
+                <li><a href="02-container-properties/08-place-items.html">Place Items</a></li>
+                <li><a href="02-container-properties/09-justify-content.html">Justify Content</a></li>
+                <li><a href="02-container-properties/10-align-content.html">Align Content</a></li>
+                <li><a href="02-container-properties/11-place-content.html">Place Content</a></li>
+                <li><a href="02-container-properties/12-grid-auto-columns.html">Grid Auto Columns</a></li>
+                <li><a href="02-container-properties/13-grid-auto-rows.html">Grid Auto Rows</a></li>
+                <li><a href="02-container-properties/14-grid-auto-flow.html">Grid Auto Flow</a></li>
+            </ul>
+        </section>
+        
+        <!-- 03. Item Properties -->
+        <section class="section-card">
+            <h2><span class="icon">🎯</span> 03. Item Properties</h2>
+            <p>Properties applied to individual grid items (child elements).</p>
+            <ul class="example-list">
+                <li><a href="03-item-properties/01-grid-column-start.html">Grid Column Start</a></li>
+                <li><a href="03-item-properties/02-grid-column-end.html">Grid Column End</a></li>
+                <li><a href="03-item-properties/03-grid-column.html">Grid Column</a></li>
+                <li><a href="03-item-properties/04-grid-row-start.html">Grid Row Start</a></li>
+                <li><a href="03-item-properties/05-grid-row-end.html">Grid Row End</a></li>
+                <li><a href="03-item-properties/06-grid-row.html">Grid Row</a></li>
+                <li><a href="03-item-properties/07-grid-area.html">Grid Area</a></li>
+                <li><a href="03-item-properties/08-justify-self.html">Justify Self</a></li>
+                <li><a href="03-item-properties/09-align-self.html">Align Self</a></li>
+                <li><a href="03-item-properties/10-place-self.html">Place Self</a></li>
+                <li><a href="03-item-properties/11-order.html">Order</a></li>
+            </ul>
+        </section>
+        
+        <!-- 04. Advanced Layouts -->
+        <section class="section-card">
+            <h2><span class="icon">✨</span> 04. Advanced Layouts</h2>
+            <p>Advanced techniques, functions, and complex layout patterns.</p>
+            <ul class="example-list">
+                <li><a href="04-advanced-layouts/01-nested-grids.html">Nested Grids</a></li>
+                <li><a href="04-advanced-layouts/02-overlapping-items.html">Overlapping Items</a></li>
+                <li><a href="04-advanced-layouts/03-minmax-function.html">minmax() Function</a></li>
+                <li><a href="04-advanced-layouts/04-repeat-function.html">repeat() Function</a></li>
+                <li><a href="04-advanced-layouts/05-auto-fill.html">Auto-fill</a></li>
+                <li><a href="04-advanced-layouts/06-auto-fit.html">Auto-fit</a></li>
+                <li><a href="04-advanced-layouts/07-fr-unit.html">FR Unit</a></li>
+                <li><a href="04-advanced-layouts/08-fit-content.html">fit-content() Function</a></li>
+                <li><a href="04-advanced-layouts/09-min-content-max-content.html">Content-based Sizing</a></li>
+                <li><a href="04-advanced-layouts/10-subgrid.html">Subgrid</a></li>
+            </ul>
+        </section>
+        
+        <!-- 05. Responsive Examples -->
+        <section class="section-card">
+            <h2><span class="icon">📱</span> 05. Responsive Examples</h2>
+            <p>Real-world responsive layouts and practical design patterns.</p>
+            <ul class="example-list">
+                <li><a href="05-responsive-examples/01-basic-responsive.html">Basic Responsive</a></li>
+                <li><a href="05-responsive-examples/02-holy-grail-layout.html">Holy Grail Layout</a></li>
+                <li><a href="05-responsive-examples/03-card-layout.html">Card Layout</a></li>
+                <li><a href="05-responsive-examples/04-magazine-layout.html">Magazine Layout</a></li>
+                <li><a href="05-responsive-examples/05-dashboard-layout.html">Dashboard Layout</a></li>
+                <li><a href="05-responsive-examples/06-masonry-layout.html">Masonry Layout</a></li>
+                <li><a href="05-responsive-examples/07-12-column-system.html">12-Column System</a></li>
+                <li><a href="05-responsive-examples/08-asymmetric-layout.html">Asymmetric Layout</a></li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>Built with ❤️ for learning CSS Grid</p>
+        <a href="https://github.com/Jayasakthi-07/CSS-Grid-Complete-Guide" class="github-link">
+            💻 View on GitHub
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Don't forget to ⭐ star the repository if you find it helpful!</p>
+    </footer>
+</body>
+</html>
