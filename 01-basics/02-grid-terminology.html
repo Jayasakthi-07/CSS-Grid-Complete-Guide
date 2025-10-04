@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid Terminology - CSS Grid Basics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Example-specific styles */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .term-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+    .term-card h4 { margin-bottom: .5rem; color: #2d3748; }
+
+    .line-map {
+      --cols: 4;
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 80px);
+      grid-template-rows: repeat(3, 60px);
+      gap: 8px;
+      justify-content: center;
+      margin: 1rem auto;
+      position: relative;
+    }
+    .cell { background: linear-gradient(135deg,#90cdf4,#667eea); color: #fff; border-radius: 6px; display:flex; align-items:center; justify-content:center; font-weight:600; }
+
+    /* Grid line numbers */
+    .line-map::before,
+    .line-map::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .col-lines, .row-lines {
+      display: grid; gap: 8px; position: absolute; pointer-events: none; color:#2d3748; font-weight:700; font-size: 12px;
+    }
+    .col-lines { grid-template-columns: repeat(var(--cols), 80px); left: 0; right: 0; top: -22px; }
+    .row-lines { grid-template-rows: repeat(3, 60px); top: 0; bottom: 0; left: -26px; }
+    .badge { background:#edf2f7; border:1px solid #e2e8f0; border-radius: 6px; padding: 2px 6px; text-align:center; }
+
+    .area-demo { display:grid; grid-template-areas:
+      "header header header header"
+      "sidebar main main aside"
+      "footer footer footer footer";
+      grid-template-columns: 140px 1fr 1fr 140px;
+      grid-template-rows: auto 220px auto;
+      gap: 8px; margin-top: 1rem;
+    }
+    .area-demo > div { background:#fff; border-radius: 8px; padding: .75rem; box-shadow: 0 4px 12px rgba(0,0,0,.06); font-weight:600; }
+    .area-header { grid-area: header; }
+    .area-sidebar { grid-area: sidebar; }
+    .area-main { grid-area: main; }
+    .area-aside { grid-area: aside; }
+    .area-footer { grid-area: footer; }
+
+    .legend { display:flex; flex-wrap: wrap; gap:.5rem; margin-top:.5rem; }
+    .legend .chip { background:#e6fffa; border:1px solid #b2f5ea; color:#234e52; border-radius:16px; padding:.25rem .5rem; font-size:.85rem; }
+
+    .playground { margin-top: 1rem; }
+    .controls { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; }
+    .controls input { width: 80px; padding:.4rem .5rem; border:1px solid #cbd5e0; border-radius:6px; }
+    .controls button { cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="example-container">
+    <header class="header">
+      🧭 Grid Terminology
+      Learn the essential vocabulary: container, items, lines, tracks, cells, and areas
+    </header>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Home</a>
+      <a class="nav-link" href="01-display-grid.html">← Back: Display Grid</a>
+      <a class="nav-link" href="03-grid-lines.html">Next: Grid Lines →</a>
+    </nav>
+
+    <section class="explanation">
+      Why terminology matters
+      CSS Grid introduces precise terms that map to powerful layout features. Mastering these terms helps you read, write, and debug grid layouts quickly.
+    </section>
+
+    <section class="explanation">
+      Core concepts at a glance
+      <div class="terms-grid">
+        <div class="term-card">
+          <h4>Grid Container</h4>
+          The element with display: grid or display: inline-grid. It establishes the grid formatting context.
+          <div class="code-display">.container { display: grid; }</div>
+        </div>
+        <div class="term-card">
+          <h4>Grid Item</h4>
+          Direct children of the grid container become grid items and participate in the grid layout.
+          <div class="code-display">.container > .item { /* grid item */ }</div>
+        </div>
+        <div class="term-card">
+          <h4>Grid Line</h4>
+          The lines that define the grid structure. They’re numbered and can be named for placement.
+          <div class="code-display">.item { grid-column: 1 / 3; }</div>
+        </div>
+        <div class="term-card">
+          <h4>Grid Track</h4>
+          The space between two adjacent grid lines (a column or a row).
+          <div class="code-display">grid-template-columns: 200px 1fr 200px;</div>
+        </div>
+        <div class="term-card">
+          <h4>Grid Cell</h4>
+          The smallest unit of the grid where a single row and column intersect.
+          <div class="code-display">/* Cells are the individual boxes */</div>
+        </div>
+        <div class="term-card">
+          <h4>Grid Area</h4>
+          A rectangular space spanning any number of cells. Can be named.
+          <div class="code-display">grid-template-areas: "header header" "sidebar main";</div>
+        </div>
+        <div class="term-card">
+          <h4>Explicit vs Implicit Grid</h4>
+          Tracks you define are explicit; ones created by auto-placement are implicit.
+          <div class="code-display">grid-auto-rows: 120px;</div>
+        </div>
+        <div class="term-card">
+          <h4>Gaps</h4>
+          Spacing between tracks. Does not create lines; it’s the space between them.
+          <div class="code-display">gap: 12px; /* row-gap/column-gap */</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="explanation">
+      Visualizing lines, tracks, and cells
+      <div class="line-map" id="lineMap" style="--cols: 4">
+        <div class="col-lines">
+          <div class="badge">1</div><div class="badge">2</div><div class="badge">3</div><div class="badge">4</div>
+        </div>
+        <div class="row-lines" style="display:grid">
+          <div class="badge">1</div>
+          <div class="badge">2</div>
+          <div class="badge">3</div>
+        </div>
+        <div class="cell">1</div><div class="cell">2</div><div class="cell">3</div><div class="cell">4</div>
+        <div class="cell">5</div><div class="cell">6</div><div class="cell">7</div><div class="cell">8</div>
+        <div class="cell">9</div><div class="cell">10</div><div class="cell">11</div><div class="cell">12</div>
+      </div>
+      <div class="legend">
+        <span class="chip">Lines: numbered boundaries</span>
+        <span class="chip">Tracks: space between lines</span>
+        <span class="chip">Cells: 1 column × 1 row</span>
+        <span class="chip">Areas: multiple cells</span>
+      </div>
+    </section>
+
+    <section class="explanation playground">
+      Interactive playground
+      <div class="controls">
+        <label>Columns <input id="cols" type="number" min="2" max="8" value="4" /></label>
+        <label>Rows <input id="rows" type="number" min="2" max="6" value="3" /></label>
+        <button class="toggle-btn" onclick="updateGrid()">Update</button>
+      </div>
+      <div id="playArea" class="area-demo">
+        <div class="area-header">Header</div>
+        <div class="area-sidebar">Sidebar</div>
+        <div class="area-main">Main</div>
+        <div class="area-aside">Aside</div>
+        <div class="area-footer">Footer</div>
+      </div>
+      <div class="code-display" id="codeOut"></div>
+    </section>
+
+    <nav class="navigation">
+      <a class="nav-link" href="../index.html">🏠 Back to Home</a>
+      <a class="nav-link" href="01-display-grid.html">← Back: Display Grid</a>
+      <a class="nav-link" href="03-grid-lines.html">Next: Grid Lines →</a>
+    </nav>
+  </div>
+
+  <script>
+    function updateGrid() {
+      const cols = Math.max(2, Math.min(8, parseInt(document.getElementById('cols').value || '4', 10)));
+      const rows = Math.max(2, Math.min(6, parseInt(document.getElementById('rows').value || '3', 10)));
+
+      const map = document.getElementById('lineMap');
+      map.style.setProperty('--cols', cols);
+      map.style.gridTemplateColumns = `repeat(${cols}, 80px)`;
+      map.style.gridTemplateRows = `repeat(${rows}, 60px)`;
+
+      // rebuild column indices
+      const colLines = map.querySelector('.col-lines');
+      colLines.innerHTML = Array.from({ length: cols }, (_, i) => `<div class="badge">${i+1}</div>`).join('');
+      // rebuild row indices
+      const rowLines = map.querySelector('.row-lines');
+      rowLines.style.display = 'grid';
+      rowLines.style.gridTemplateRows = `repeat(${rows}, 60px)`;
+      rowLines.innerHTML = Array.from({ length: rows }, (_, i) => `<div class="badge">${i+1}</div>`).join('');
+      // rebuild cells
+      map.querySelectorAll('.cell').forEach(n => n.remove());
+      const frag = document.createDocumentFragment();
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const d = document.createElement('div');
+          d.className = 'cell';
+          d.textContent = (r * cols) + c + 1;
+          frag.appendChild(d);
+        }
+      }
+      map.appendChild(frag);
+
+      // code output
+      const code = [
+        `/* Explicit grid */`,
+        `grid-template-columns: repeat(${cols}, 80px);`,
+        `grid-template-rows: repeat(${rows}, 60px);`,
+        `gap: 8px;`
+      ].join('\n');
+      document.getElementById('codeOut').textContent = code;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateGrid);
+  </script>
+</body>
+</html>
